@@ -2,8 +2,6 @@
 
 A conversational shopping assistant. Tell it what you want in plain English, or upload a photo of a product. It searches the store, checks customer ratings, shows the matches, and places the order once you confirm.
 
-**Live demo:** [chaitanya4595-ai-shopping-agent.streamlit.app](https://chaitanya4595-ai-shopping-agent.streamlit.app)
-
 ## How it works
 
 ```mermaid
