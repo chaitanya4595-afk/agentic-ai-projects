@@ -23,7 +23,7 @@ ChatPromptTemplate → Qwen3-32B (Groq) → Answer
 ## Project Structure
 
 ```
-rag-telecom-chatbot/
+telecom_rag_chatbot/
 ├── app.py              # Streamlit web UI
 ├── main.py             # CLI entry point
 ├── rag_chain.py        # Builds the LangChain RAG chain
@@ -34,9 +34,7 @@ rag-telecom-chatbot/
 ├── data/
 │   ├── faq.csv             # FAQ question/answer pairs
 │   ├── tickets.db          # SQLite database of resolved support tickets
-│   ├── telecom_guide.pdf   # Telecom user guide (chunked at ingest)
-│   ├── seed_tickets.py     # Script to seed the tickets database
-│   └── generate_pdf.py     # Script to generate the telecom guide PDF
+│   └── telecom_guide.pdf   # Telecom user guide (chunked at ingest)
 ├── chroma_store/       # Persisted Chroma vector database (created at ingest)
 ├── pyproject.toml
 ├── uv.lock
@@ -55,8 +53,8 @@ rag-telecom-chatbot/
 **1. Clone and install dependencies**
 
 ```bash
-git clone <repo-url>
-cd rag-telecom-chatbot
+git clone https://github.com/chaitanya4595-afk/agentic-ai-projects.git
+cd agentic-ai-projects/telecom_rag_chatbot
 uv sync          # or: pip install -e .
 ```
 
@@ -112,15 +110,3 @@ Interactive prompt — type a question and press Enter. Type `quit` to exit.
 | `guides` | `data/telecom_guide.pdf` | Chunks of 600 chars with 100-char overlap |
 
 The retriever fetches the top 3 results from each collection (9 context documents total) for every query.
-
-## Regenerating Seed Data
-
-```bash
-# Seed the SQLite ticket database
-python data/seed_tickets.py
-
-# Regenerate the PDF guide
-python data/generate_pdf.py
-```
-
-After regenerating, re-run the corresponding ingest script.

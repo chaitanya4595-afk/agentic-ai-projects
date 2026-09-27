@@ -1,56 +1,47 @@
 # Agentic AI Projects
 
-LLM apps and agents built with LangChain, Groq, Gemini and Streamlit.
+LLM applications built with LangChain: a tool-using shopping agent, a two-stage medical report analyzer, and a retrieval-augmented support chatbot.
 
-| Folder | What it is |
-|---|---|
-| `ai_shopping_agent/` | Shopping assistant agent that searches products, checks ratings, places orders and supports search by image |
-| `blood_work_analyzer/` | Reads a blood report, flags HIGH/LOW/NORMAL values and suggests an Indian diet plan |
-| `telecom_rag_chatbot/` | RAG customer-care chatbot over FAQs, support tickets and a PDF guide (see its own README) |
-| `call_llm.ipynb` | Basic LLM calls with LangChain |
+## Live demos
 
-## AI Shopping Agent
+| App | Try it | What to try |
+|---|---|---|
+| AI Shopping Agent | [chaitanya4595-ai-shopping-agent.streamlit.app](https://chaitanya4595-ai-shopping-agent.streamlit.app) | "I want organic honey under $20 with a 4.5+ rating", then "order #1" |
+| Blood Work Analyzer | [chaitanya4595-blood-work-analyzer.streamlit.app](https://chaitanya4595-blood-work-analyzer.streamlit.app) | Click **Analyze** on the preloaded sample report |
 
-A LangChain agent running on Groq with four tools:
+## Projects
 
-- `search_products` searches a SQLite product catalog by keyword, price and organic status.
-- `get_rating` returns the average customer rating for a product.
-- `checkout` places an order and saves it to the database.
-- `describe_product_image` uses a vision model to identify a product from an uploaded photo.
+| Project | Summary | Stack |
+|---|---|---|
+| [AI Shopping Agent](ai_shopping_agent/) | An agent that searches a product catalog, checks ratings, places orders on confirmation, and finds products from an uploaded photo | LangChain agents, Groq (Qwen3, Llama 4 Scout vision), SQLite, Streamlit |
+| [Blood Work Analyzer](blood_work_analyzer/) | Flags each test value as HIGH, LOW or NORMAL, then writes a plain-language summary and an Indian diet plan | LangChain, Gemini API (Gemma 4), Streamlit |
+| [Telecom RAG Chatbot](telecom_rag_chatbot/) | Customer-care chatbot that answers from FAQs, resolved support tickets and a PDF guide | LangChain, ChromaDB, Hugging Face embeddings, Groq (Qwen3), Streamlit |
 
-Sample images for the image search are in `ai_shopping_agent/resources/`.
+`call_llm.ipynb` holds the basic model calls the projects build on: system prompts, temperature, and switching between Gemini and Groq.
 
-```bash
-cd ai_shopping_agent
-uv run streamlit run app.py
-```
+## Run locally
 
-Needs `GROQ_API_KEY`. Rebuild the product database with `uv run python setup_db.py`.
-
-## Blood Work Analyzer
-
-A two-stage Gemini pipeline. The first call extracts every test value and classifies it against its reference range. The second writes a plain-language health summary and a diet plan. A sample report is preloaded, and you can paste your own.
+Requires Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
 ```bash
+git clone https://github.com/chaitanya4595-afk/agentic-ai-projects.git
+cd agentic-ai-projects
+uv sync
+cp .env.example .env   # add your API keys
+
+uv run streamlit run ai_shopping_agent/app.py
 uv run streamlit run blood_work_analyzer/streamlit_app/app.py
 ```
 
-Needs `GOOGLE_API_KEY`. The notebook version is `blood_work_analyzer/blood_work_analysis.ipynb`.
+The telecom chatbot needs a one-time ingestion step first. See [its README](telecom_rag_chatbot/README.md).
 
-## Setup
+## Repository layout
 
-```bash
-uv sync
-cp telecom_rag_chatbot/.env.example .env   # then add GROQ_API_KEY and GOOGLE_API_KEY
+```
+ai_shopping_agent/      Tool-calling shopping agent + Streamlit UI
+blood_work_analyzer/    Notebook prototype + Streamlit app
+telecom_rag_chatbot/    RAG pipeline, ingestion scripts, CLI and Streamlit UI
+call_llm.ipynb          Model-calling basics
 ```
 
-## Deploying on Streamlit Community Cloud
-
-Each app has its own `requirements.txt` next to its entry file, so it deploys without the heavier dependencies of the other projects.
-
-| App | Main file path | Secret |
-|---|---|---|
-| AI Shopping Agent | `ai_shopping_agent/app.py` | `GROQ_API_KEY` |
-| Blood Work Analyzer | `blood_work_analyzer/streamlit_app/app.py` | `GOOGLE_API_KEY` |
-
-Choose Python 3.12 under advanced settings.
+Each deployable app has its own `requirements.txt` beside its entry file, so it deploys without the heavier dependencies of the other projects.
