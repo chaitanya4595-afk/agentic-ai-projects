@@ -1,17 +1,15 @@
-# Agentic AI Crash Course
+# Agentic AI Projects
 
-Projects built while following the Codebasics Agentic AI crash course.
-
-## Projects
+LLM apps and agents built with LangChain, Groq, Gemini and Streamlit.
 
 | Folder | What it is |
 |---|---|
-| `call_llm.ipynb` | First steps calling LLMs with LangChain |
-| `2_health_analysis/` | Blood work analysis notebook plus a Streamlit app |
-| `10_project_shopping_agent/` | AI shopping assistant agent: searches products, checks ratings, places orders, and supports search by image |
-| `11_project_telecom_chatbot/` | RAG customer-care chatbot over FAQs, support tickets and a PDF guide (see its own README) |
+| `ai_shopping_agent/` | Shopping assistant agent that searches products, checks ratings, places orders and supports search by image |
+| `blood_work_analyzer/` | Reads a blood report, flags HIGH/LOW/NORMAL values and suggests an Indian diet plan |
+| `telecom_rag_chatbot/` | RAG customer-care chatbot over FAQs, support tickets and a PDF guide (see its own README) |
+| `call_llm.ipynb` | Basic LLM calls with LangChain |
 
-## AI Shopping Assistant
+## AI Shopping Agent
 
 A LangChain agent running on Groq with four tools:
 
@@ -20,22 +18,39 @@ A LangChain agent running on Groq with four tools:
 - `checkout` places an order and saves it to the database.
 - `describe_product_image` uses a vision model to identify a product from an uploaded photo.
 
-Sample images to try the image search are in `10_project_shopping_agent/resources/`.
-
-### Run locally
+Sample images for the image search are in `ai_shopping_agent/resources/`.
 
 ```bash
-uv sync
-echo "GROQ_API_KEY=your_key" > .env
-cd 10_project_shopping_agent
+cd ai_shopping_agent
 uv run streamlit run app.py
 ```
 
-To rebuild the product database, run `uv run python setup_db.py`.
+Needs `GROQ_API_KEY`. Rebuild the product database with `uv run python setup_db.py`.
 
-### Deploy on Streamlit Community Cloud
+## Blood Work Analyzer
 
-1. Create a new app from this repo with main file path `10_project_shopping_agent/app.py` and Python 3.12.
-2. In the app's secrets, add `GROQ_API_KEY = "your_key"`.
+A two-stage Gemini pipeline. The first call extracts every test value and classifies it against its reference range. The second writes a plain-language health summary and a diet plan. A sample report is preloaded, and you can paste your own.
 
-Dependencies for the deployed app are in `10_project_shopping_agent/requirements.txt`.
+```bash
+uv run streamlit run blood_work_analyzer/streamlit_app/app.py
+```
+
+Needs `GOOGLE_API_KEY`. The notebook version is `blood_work_analyzer/blood_work_analysis.ipynb`.
+
+## Setup
+
+```bash
+uv sync
+cp telecom_rag_chatbot/.env.example .env   # then add GROQ_API_KEY and GOOGLE_API_KEY
+```
+
+## Deploying on Streamlit Community Cloud
+
+Each app has its own `requirements.txt` next to its entry file, so it deploys without the heavier dependencies of the other projects.
+
+| App | Main file path | Secret |
+|---|---|---|
+| AI Shopping Agent | `ai_shopping_agent/app.py` | `GROQ_API_KEY` |
+| Blood Work Analyzer | `blood_work_analyzer/streamlit_app/app.py` | `GOOGLE_API_KEY` |
+
+Choose Python 3.12 under advanced settings.
