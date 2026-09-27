@@ -2,8 +2,6 @@
 
 Paste a blood test report and get every value flagged against its reference range, a plain-language health summary, and a practical Indian diet plan.
 
-**Live demo:** [chaitanya4595-blood-work-analyzer.streamlit.app](https://chaitanya4595-blood-work-analyzer.streamlit.app)
-
 ## How it works
 
 The analysis runs as two chained LLM calls instead of one large prompt.
