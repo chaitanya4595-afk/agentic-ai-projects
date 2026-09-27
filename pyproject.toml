@@ -1,0 +1,29 @@
+[project]
+name = "agentic-ai-projects"
+version = "0.1.0"
+description = "Agentic AI projects: AI shopping agent, blood work analyzer, telecom RAG chatbot"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-core>=1.0.0",
+    "langchain-google-genai>=4.2.2",
+    "langchain-groq>=0.3.0",
+    "python-dotenv>=1.2.2",
+    "streamlit>=1.57.0",
+    "ipykernel>=7.2.0",
+    "notebook>=7.5.6",
+    "langchain-chroma>=1.1.0",
+    "langchain-huggingface>=1.2.2",
+    "chromadb>=1.5.9",
+    "onnxruntime==1.20.1",
+    "sentence-transformers>=5.5.0",
+    "pandas>=3.0.2",
+    "fpdf2>=2.8.7",
+    "pypdf>=6.11.0",
+    "langchain-community>=0.4.1",
+    "langchain-text-splitters>=1.1.2",
+    "pillow>=12.2.0",
+    "torch==2.2.2",
+    "torchvision==0.17.2",
+]

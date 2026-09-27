@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# OS / editor / notebook noise
+.DS_Store
+.ipynb_checkpoints/
+
+# Generated vector stores
+chroma_store/
