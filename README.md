@@ -26,7 +26,7 @@ I built this to turn unstructured reviews into a table of sentiment, satisfactio
 
 **Built with:** Python, Gemini, FastAPI, Pydantic, Streamlit, SQLite.
 
-[Repository](https://github.com/kcrokkam/customer-feedback-analyzer) · [Demo](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) · [Tests](https://github.com/kcrokkam/customer-feedback-analyzer/tree/main/tests)
+[Repository](https://github.com/kcrokkam/customer-feedback-analyzer) · [Demo](https://customer-feedback-analyzer-e9knamtt665fhwzv9strhq.streamlit.app/) · [Tests](https://github.com/kcrokkam/customer-feedback-analyzer/tree/main/tests)
 
 ## Interview Synthesizer
 
