@@ -1,8 +1,8 @@
 # Blood Work Analyzer
 
-> **Historical tutorial snapshot.** The current project is [kcrokkam/blood-work-analyzer](https://github.com/kcrokkam/blood-work-analyzer). Use that repository for setup, documentation, and future changes.
+> I keep this folder as an earlier version of the project. The current code and setup instructions are in [blood-work-analyzer](https://github.com/kcrokkam/blood-work-analyzer).
 
-[Portfolio guide](../README.md)
+[My other projects](../README.md)
 
 Paste a blood test report and get every value flagged against its reference range, a plain-language health summary, and a practical Indian diet plan.
 

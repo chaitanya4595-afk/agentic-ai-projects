@@ -1,46 +1,58 @@
-# AI & Applied Data Science Portfolio
+# AI Applications
 
-Python projects by [Krishna Chaitanya](https://github.com/kcrokkam), focused on LLM applications, retrieval, and analysis of unstructured text.
+I'm Krishna Chaitanya Rokkam. My background is in data science, enterprise analytics, and automation. I built these projects to explore how LLMs can work with tools, structured data, and documents to solve practical problems.
 
-**Start with the standalone repositories below.** Each is the current home for its application, setup instructions, and engineering notes. The code folders in this collection are retained as historical tutorial snapshots.
+Each project has its own repository with the implementation, setup instructions, and design notes. This page brings them together.
 
-## Project guide
+## AI Shopping Agent
 
-| Project | Problem and approach | Explore |
-| --- | --- | --- |
-| **[AI Shopping Agent](https://github.com/kcrokkam/ai-shopping-agent)** | Conversational product discovery: an LLM coordinates catalog search, ratings, image understanding, and demo checkout. | [Architecture](https://github.com/kcrokkam/ai-shopping-agent/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/ai-shopping-agent/tree/main/tests) · [Demo](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) |
-| **[Customer Feedback Analyzer](https://github.com/kcrokkam/customer-feedback-analyzer)** | Review analysis: Gemini returns validated sentiment, scores, and themes; a FastAPI service and Streamlit dashboard handle analysis and summaries. | [Architecture](https://github.com/kcrokkam/customer-feedback-analyzer/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/customer-feedback-analyzer/tree/main/tests) · [Demo](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) |
-| **[Telecom RAG Chatbot](https://github.com/kcrokkam/telecom-rag-chatbot)** | Support question answering: retrieval across FAQ rows, resolved tickets, and PDF chunks supplies context to a Groq-hosted model. | [Architecture](https://github.com/kcrokkam/telecom-rag-chatbot/blob/main/ARCHITECTURE.md) · [Package checks](https://github.com/kcrokkam/telecom-rag-chatbot/tree/main/tests) · [Setup](https://github.com/kcrokkam/telecom-rag-chatbot#run-locally) |
-| **[Interview Synthesizer](https://github.com/kcrokkam/interview_synthesizer)** | Qualitative research: staged extraction, thematic synthesis, a memo, deterministic quote/number checks, and a critic review. | [Sample memo](https://github.com/kcrokkam/interview_synthesizer/blob/main/output/memo.md) · [Quality report](https://github.com/kcrokkam/interview_synthesizer/blob/main/output/quality_report.md) · [Build log](https://github.com/kcrokkam/interview_synthesizer/blob/main/BUILD_LOG.md) |
-| **[Blood Work Analyzer](https://github.com/kcrokkam/blood-work-analyzer)** | Report interpretation demo: separate extraction and interpretation stages with injected model dependencies for testing. | [Architecture](https://github.com/kcrokkam/blood-work-analyzer/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/blood-work-analyzer/tree/main/tests) · [Demo](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) |
+I built a conversational shopping assistant that searches a catalog, looks up ratings, and identifies products from images. The model chooses which tools to call; Python and SQLite handle the catalog and demo orders. I wanted to understand how an agent moves through a task that involves several tools and follow-up questions.
 
-## A short review path
+**Built with:** Python, LangChain, Groq, SQLite, Streamlit.
 
-**AI / LLM engineering:** start with the Shopping Agent's tool implementations, then review the Telecom Chatbot's retriever and package commands. These show two different application patterns: tool orchestration and retrieval-augmented generation.
+[Repository](https://github.com/kcrokkam/ai-shopping-agent) · [Demo](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) · [Architecture](https://github.com/kcrokkam/ai-shopping-agent/blob/main/ARCHITECTURE.md)
 
-**Applied data science:** start with the Feedback Analyzer's validation and summary calculations, then read the Interview Synthesizer's quality report alongside its critic review. These show structured text analysis and the limits of automated evidence checks.
+## Telecom RAG Assistant
 
-**Pipeline design:** the Blood Work Analyzer separates extraction and interpretation and tests orchestration with a fake model. It is a technical demonstration using sample reports, with no clinical accuracy benchmark.
+I built a support assistant that retrieves information from FAQs, resolved tickets, and a PDF guide before generating a response. The main design decision was to keep the sources in separate collections and combine their results when answering a question. I also packaged the application so the same workflow runs through a browser or terminal.
 
-## What the evidence covers
+**Built with:** Python, LangChain, Chroma, Hugging Face embeddings, Groq, Streamlit.
 
-| Project | Available validation | Boundary |
-| --- | --- | --- |
-| Shopping Agent | Catalog and rating tests; GitHub Actions | Checkout confirmation is an agent-policy rule; no end-to-end agent quality benchmark |
-| Feedback Analyzer | Analytics, API, persistence, and mocked service tests | No measured sentiment/theme accuracy benchmark |
-| Telecom Chatbot | Package contents, command help, and installed data-path checks | No retrieval relevance or answer-quality benchmark |
-| Interview Synthesizer | Source checks, saved critic output, and versioned build notes | Synthetic interviews; quote/number matches do not guarantee correct attribution or reasoning |
-| Blood Work Analyzer | Model-independent two-stage pipeline tests | No clinical validation or extraction-accuracy benchmark |
+[Repository](https://github.com/kcrokkam/telecom-rag-chatbot) · [Architecture](https://github.com/kcrokkam/telecom-rag-chatbot/blob/main/ARCHITECTURE.md) · [Downloads](https://github.com/kcrokkam/telecom-rag-chatbot/releases)
 
-## Historical tutorial material
+## Customer Feedback Analyzer
 
-These folders preserve the earlier learning versions. Use the standalone repositories above for current work; updates to an application should be made there.
+I built this to turn unstructured reviews into a table of sentiment, satisfaction scores, and themes. The dashboard summarizes successful analyses and keeps individual results available for review. I separated the FastAPI service from the UI and used Pydantic to validate model responses before they reach the analytics layer.
 
-| Snapshot | Current project |
-| --- | --- |
-| [`ai_shopping_agent/`](ai_shopping_agent/) | [ai-shopping-agent](https://github.com/kcrokkam/ai-shopping-agent) |
-| [`blood_work_analyzer/`](blood_work_analyzer/) | [blood-work-analyzer](https://github.com/kcrokkam/blood-work-analyzer) |
-| [`telecom_rag_chatbot/`](telecom_rag_chatbot/) | [telecom-rag-chatbot](https://github.com/kcrokkam/telecom-rag-chatbot) |
-| [`call_llm.ipynb`](call_llm.ipynb) | Introductory model-call experiments |
+**Built with:** Python, Gemini, FastAPI, Pydantic, Streamlit, SQLite.
 
-The root dependency files belong to these historical examples. Each standalone repository documents its own environment and commands. Earlier commits and the original telecom package release remain available here.
+[Repository](https://github.com/kcrokkam/customer-feedback-analyzer) · [Demo](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) · [Tests](https://github.com/kcrokkam/customer-feedback-analyzer/tree/main/tests)
+
+## Interview Synthesizer
+
+I built a workflow that turns interview transcripts into themes and a short memo. I added quote and number checks because a readable summary is only useful if its claims can be traced back to the source. The saved outputs and build log show what worked and where the workflow overstated or misattributed information.
+
+**Built with:** Python and Claude Code workflows. The example interviews are synthetic.
+
+[Repository](https://github.com/kcrokkam/interview_synthesizer) · [Sample memo](https://github.com/kcrokkam/interview_synthesizer/blob/main/output/memo.md) · [Build log](https://github.com/kcrokkam/interview_synthesizer/blob/main/BUILD_LOG.md)
+
+## Blood Work Analyzer
+
+I built this as an experiment in separating extraction from interpretation. One model call reads the sample report and classifies values; a second uses that result to write a summary and dietary guidance. I test the orchestration with a fake model. This is an educational application, with no clinical validation.
+
+**Built with:** Python, LangChain, Gemini API, Streamlit.
+
+[Repository](https://github.com/kcrokkam/blood-work-analyzer) · [Demo](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) · [Pipeline design](https://github.com/kcrokkam/blood-work-analyzer/blob/main/ARCHITECTURE.md)
+
+## Earlier versions
+
+I started the shopping, telecom, and blood-work projects in this repository before giving each application its own home. I keep those versions here alongside my introductory model-call notebook:
+
+- [`ai_shopping_agent/`](ai_shopping_agent/)
+- [`telecom_rag_chatbot/`](telecom_rag_chatbot/)
+- [`blood_work_analyzer/`](blood_work_analyzer/)
+- [`call_llm.ipynb`](call_llm.ipynb)
+
+For current setup instructions and code, use the project repositories linked above. The dependency files in this collection belong to the earlier versions.
+
+[About me](https://github.com/kcrokkam) · [LinkedIn](https://www.linkedin.com/in/krishna-chaitanya-rokkam/)
