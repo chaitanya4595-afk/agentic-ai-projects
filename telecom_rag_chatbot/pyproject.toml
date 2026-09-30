@@ -1,7 +1,12 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "rag-telecom-chatbot"
 version = "0.1.0"
 description = "RAG-based telecom customer care chatbot"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "langchain",
@@ -19,3 +24,19 @@ dependencies = [
     "langchain-community",
     "langchain-text-splitters",
 ]
+
+[project.scripts]
+telecom-chat = "telecom_rag_chatbot.launcher:chat"
+telecom-web = "telecom_rag_chatbot.launcher:web"
+telecom-ingest = "telecom_rag_chatbot.launcher:ingest"
+
+[project.urls]
+Repository = "https://github.com/kcrokkam/agentic-ai-projects"
+
+[tool.setuptools]
+packages = ["telecom_rag_chatbot"]
+package-dir = {telecom_rag_chatbot = "."}
+include-package-data = false
+
+[tool.setuptools.package-data]
+telecom_rag_chatbot = ["data/*.csv", "data/*.db", "data/*.pdf"]

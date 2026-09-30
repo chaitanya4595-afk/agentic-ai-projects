@@ -9,8 +9,10 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.runnables import RunnableLambda
 from langchain_core.documents import Document
 
-CHROMA_DIR  = "chroma_store"
-EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+if __package__:
+    from .config import CHROMA_DIR, EMBED_MODEL
+else:
+    from config import CHROMA_DIR, EMBED_MODEL
 
 
 def build_retriever(

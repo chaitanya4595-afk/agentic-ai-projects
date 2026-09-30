@@ -1,6 +1,6 @@
 # RAG Telecom Chatbot
 
-A Retrieval-Augmented Generation (RAG) customer care chatbot for telecom support. It answers questions about mobile connectivity, billing, SIM issues, and roaming by retrieving relevant context from three knowledge sources and generating responses with Qwen3-32B via Groq.
+A Retrieval-Augmented Generation (RAG) customer care chatbot for telecom support. It answers questions about mobile connectivity, billing, SIM issues, and roaming by retrieving relevant context from three knowledge sources and generating responses with Qwen3.8-27B via Groq.
 
 ## Architecture
 
@@ -14,11 +14,11 @@ Merged Retriever (top-k from each store)
   └── ChromaDB · guides     (PDF guide chunks)
      │
      ▼
-ChatPromptTemplate → Qwen3-32B (Groq) → Answer
+ChatPromptTemplate → Qwen3.8-27B (Groq) → Answer
 ```
 
 **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2` (runs locally via HuggingFace)  
-**LLM:** `qwen/qwen3-32b` served by [Groq](https://groq.com)
+**LLM:** `qwen/qwen3.8-27b` served by [Groq](https://groq.com)
 
 ## Project Structure
 
@@ -53,7 +53,7 @@ telecom_rag_chatbot/
 **1. Clone and install dependencies**
 
 ```bash
-git clone https://github.com/chaitanya4595-afk/agentic-ai-projects.git
+git clone https://github.com/kcrokkam/agentic-ai-projects.git
 cd agentic-ai-projects/telecom_rag_chatbot
 uv sync          # or: pip install -e .
 ```
@@ -76,9 +76,7 @@ HF_TOKEN=your_huggingface_token_here
 Run the three ingestion scripts once to build the vector store:
 
 ```bash
-python ingest_faq.py
-python ingest_tickets.py
-python ingest_pdf.py
+uv run telecom-ingest
 ```
 
 Each script embeds the source data and persists it to `chroma_store/`. Re-run a script only when its source data changes.
@@ -88,7 +86,7 @@ Each script embeds the source data and persists it to `chroma_store/`. Re-run a 
 **Streamlit web UI**
 
 ```bash
-streamlit run app.py
+uv run telecom-web
 ```
 
 Opens at `http://localhost:8501`. The sidebar has one-click sample questions and a button to clear the conversation history.
@@ -96,7 +94,7 @@ Opens at `http://localhost:8501`. The sidebar has one-click sample questions and
 **CLI**
 
 ```bash
-python main.py
+uv run telecom-chat
 ```
 
 Interactive prompt — type a question and press Enter. Type `quit` to exit.
@@ -110,3 +108,47 @@ Interactive prompt — type a question and press Enter. Type `quit` to exit.
 | `guides` | `data/telecom_guide.pdf` | Chunks of 600 chars with 100-char overlap |
 
 The retriever fetches the top 3 results from each collection (9 context documents total) for every query.
+
+## Installable package
+
+Build the telecom project from the repository root:
+
+```bash
+uv build telecom_rag_chatbot --out-dir telecom_rag_chatbot/dist
+```
+
+This produces a wheel (`.whl`) and source distribution (`.tar.gz`). Both include
+the FAQ CSV, resolved-ticket SQLite database, and PDF guide. API keys, virtual
+environments, and generated vector stores are excluded.
+
+Install the wheel into a Python 3.11+ virtual environment:
+
+```bash
+python -m pip install telecom_rag_chatbot/dist/rag_telecom_chatbot-0.1.0-py3-none-any.whl
+```
+
+Create a `.env` file in your working directory with `GROQ_API_KEY` and optionally
+`HF_TOKEN`, then run:
+
+```bash
+telecom-ingest          # all three bundled data sources
+telecom-web             # Streamlit UI
+telecom-chat            # terminal chat, as an alternative to the UI
+```
+
+Use the same working directory for ingestion and chat, or set
+`TELECOM_CHROMA_DIR` to an absolute path in `.env`. The vector store defaults to
+`./chroma_store`; bundled source data is located relative to the installed
+package. Individual sources can be ingested with `telecom-ingest faq`,
+`telecom-ingest tickets`, or `telecom-ingest pdf`.
+
+The original `python ingest_faq.py`, `python ingest_tickets.py`,
+`python ingest_pdf.py`, `python main.py`, and `streamlit run app.py` commands
+also work from the source directory. The current configured model is
+`qwen/qwen3.8-27b`; availability depends on your Groq account.
+
+Run packaging smoke tests from the repository root after building:
+
+```bash
+python -m unittest discover -s telecom_rag_chatbot/tests -v
+```

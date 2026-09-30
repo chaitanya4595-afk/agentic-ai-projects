@@ -3,7 +3,10 @@ os.environ["TRANSFORMERS_VERBOSITY"] = "error"
 
 import streamlit as st
 from dotenv import load_dotenv
-from rag_chain import build_chain
+if __package__:
+    from .rag_chain import build_chain
+else:
+    from rag_chain import build_chain
 
 load_dotenv()
 
@@ -36,7 +39,7 @@ if "pending_question" not in st.session_state:
 # ── Sidebar ──────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("📡 Telecom Support")
-    st.caption("Powered by RAG · Qwen3-32B on Groq")
+    st.caption("Powered by RAG · Qwen3.8-27B on Groq")
     st.divider()
 
     st.markdown("**Sample questions**")

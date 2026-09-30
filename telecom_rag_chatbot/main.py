@@ -6,7 +6,10 @@ import os
 os.environ["TRANSFORMERS_VERBOSITY"] = "error"
 
 from dotenv import load_dotenv
-from rag_chain import build_chain
+if __package__:
+    from .rag_chain import build_chain
+else:
+    from rag_chain import build_chain
 
 load_dotenv()
 

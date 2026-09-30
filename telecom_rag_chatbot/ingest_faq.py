@@ -9,10 +9,13 @@ from langchain_core.documents import Document
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
-CHROMA_DIR = "chroma_store"
+if __package__:
+    from .config import CHROMA_DIR, DATA_DIR, EMBED_MODEL
+else:
+    from config import CHROMA_DIR, DATA_DIR, EMBED_MODEL
+
 COLLECTION  = "faq"
-CSV_PATH    = os.path.join("data", "faq.csv")
-EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+CSV_PATH = str(DATA_DIR / "faq.csv")
 
 
 def load_faq_documents(csv_path: str) -> list[Document]:
