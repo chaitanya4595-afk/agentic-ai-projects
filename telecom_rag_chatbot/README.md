@@ -1,5 +1,9 @@
 # RAG Telecom Chatbot
 
+> **Historical tutorial snapshot.** The current project is [kcrokkam/telecom-rag-chatbot](https://github.com/kcrokkam/telecom-rag-chatbot). Use that repository for setup, documentation, and future changes.
+
+[Portfolio guide](../README.md)
+
 A Retrieval-Augmented Generation (RAG) customer care chatbot for telecom support. It answers questions about mobile connectivity, billing, SIM issues, and roaming by retrieving relevant context from three knowledge sources and generating responses with Qwen3.8-27B via Groq.
 
 ## Architecture

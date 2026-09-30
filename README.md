@@ -1,122 +1,46 @@
-# AI Systems Portfolio
+# AI & Applied Data Science Portfolio
 
-A concise index of end-to-end AI applications I built across **agent orchestration, multimodal workflows, staged LLM pipelines, API-backed analytics, and retrieval-augmented generation**.
+Python projects by [Krishna Chaitanya](https://github.com/kcrokkam), focused on LLM applications, retrieval, and analysis of unstructured text.
 
-The projects are organized as real applications rather than notebook-only experiments: public demos where appropriate, explicit architecture, testable Python components, environment-based secrets, and documented limitations.
+**Start with the standalone repositories below.** Each is the current home for its application, setup instructions, and engineering notes. The code folders in this collection are retained as historical tutorial snapshots.
 
-## Featured projects
+## Project guide
 
-| Project | Live demo | Source | What it demonstrates |
-| --- | --- | --- | --- |
-| **AI Shopping Agent** | [Launch](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) | [Repository](https://github.com/chaitanya4595-afk/ai-shopping-agent) | Tool-calling agent, multimodal search, SQLite tools, guarded demo checkout |
-| **Customer Feedback Analyzer** | [Launch](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) | [Repository](https://github.com/chaitanya4595-afk/customer-feedback-analyzer) | Streamlit + FastAPI, Gemini structured output, validation, persistence, failure handling |
-| **Blood Work Analyzer** | [Launch](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) | [Repository](https://github.com/chaitanya4595-afk/blood-work-analyzer) | Two-stage LLM pipeline, dependency injection, pipeline-contract testing |
-| **Telecom RAG Chatbot** | — | [Code in this repo](telecom_rag_chatbot/) | Multi-source RAG over FAQs, support tickets, and PDF documentation |
+| Project | Problem and approach | Explore |
+| --- | --- | --- |
+| **[AI Shopping Agent](https://github.com/kcrokkam/ai-shopping-agent)** | Conversational product discovery: an LLM coordinates catalog search, ratings, image understanding, and demo checkout. | [Architecture](https://github.com/kcrokkam/ai-shopping-agent/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/ai-shopping-agent/tree/main/tests) · [Demo](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) |
+| **[Customer Feedback Analyzer](https://github.com/kcrokkam/customer-feedback-analyzer)** | Review analysis: Gemini returns validated sentiment, scores, and themes; a FastAPI service and Streamlit dashboard handle analysis and summaries. | [Architecture](https://github.com/kcrokkam/customer-feedback-analyzer/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/customer-feedback-analyzer/tree/main/tests) · [Demo](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) |
+| **[Telecom RAG Chatbot](https://github.com/kcrokkam/telecom-rag-chatbot)** | Support question answering: retrieval across FAQ rows, resolved tickets, and PDF chunks supplies context to a Groq-hosted model. | [Architecture](https://github.com/kcrokkam/telecom-rag-chatbot/blob/main/ARCHITECTURE.md) · [Package checks](https://github.com/kcrokkam/telecom-rag-chatbot/tree/main/tests) · [Setup](https://github.com/kcrokkam/telecom-rag-chatbot#run-locally) |
+| **[Interview Synthesizer](https://github.com/kcrokkam/interview_synthesizer)** | Qualitative research: staged extraction, thematic synthesis, a memo, deterministic quote/number checks, and a critic review. | [Sample memo](https://github.com/kcrokkam/interview_synthesizer/blob/main/output/memo.md) · [Quality report](https://github.com/kcrokkam/interview_synthesizer/blob/main/output/quality_report.md) · [Build log](https://github.com/kcrokkam/interview_synthesizer/blob/main/BUILD_LOG.md) |
+| **[Blood Work Analyzer](https://github.com/kcrokkam/blood-work-analyzer)** | Report interpretation demo: separate extraction and interpretation stages with injected model dependencies for testing. | [Architecture](https://github.com/kcrokkam/blood-work-analyzer/blob/main/ARCHITECTURE.md) · [Tests](https://github.com/kcrokkam/blood-work-analyzer/tree/main/tests) · [Demo](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) |
 
-## If you have 3 minutes
+## A short review path
 
-### 1. Start with the AI Shopping Agent
+**AI / LLM engineering:** start with the Shopping Agent's tool implementations, then review the Telecom Chatbot's retriever and package commands. These show two different application patterns: tool orchestration and retrieval-augmented generation.
 
-Try:
+**Applied data science:** start with the Feedback Analyzer's validation and summary calculations, then read the Interview Synthesizer's quality report alongside its critic review. These show structured text analysis and the limits of automated evidence checks.
 
-```text
-I want organic honey under $20 with a 4.5+ rating
-```
+**Pipeline design:** the Blood Work Analyzer separates extraction and interpretation and tests orchestration with a fake model. It is a technical demonstration using sample reports, with no clinical accuracy benchmark.
 
-Then reply with `order #1`, or upload a sample product image. The project is the clearest demonstration of agent orchestration because the model must coordinate product search, rating lookup, image understanding, and a write-capable checkout tool.
+## What the evidence covers
 
-**Technical signals:** LangChain tools · Qwen on Groq · Llama vision · SQLite · Streamlit · GitHub Actions
+| Project | Available validation | Boundary |
+| --- | --- | --- |
+| Shopping Agent | Catalog and rating tests; GitHub Actions | Checkout confirmation is an agent-policy rule; no end-to-end agent quality benchmark |
+| Feedback Analyzer | Analytics, API, persistence, and mocked service tests | No measured sentiment/theme accuracy benchmark |
+| Telecom Chatbot | Package contents, command help, and installed data-path checks | No retrieval relevance or answer-quality benchmark |
+| Interview Synthesizer | Source checks, saved critic output, and versioned build notes | Synthetic interviews; quote/number matches do not guarantee correct attribution or reasoning |
+| Blood Work Analyzer | Model-independent two-stage pipeline tests | No clinical validation or extraction-accuracy benchmark |
 
-[Live demo](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) · [README](https://github.com/chaitanya4595-afk/ai-shopping-agent#readme) · [Architecture](https://github.com/chaitanya4595-afk/ai-shopping-agent/blob/main/ARCHITECTURE.md)
+## Historical tutorial material
 
-### 2. Review the Customer Feedback Analyzer
+These folders preserve the earlier learning versions. Use the standalone repositories above for current work; updates to an application should be made there.
 
-This project shows a more conventional application architecture: Streamlit calls a FastAPI service, Gemini returns validated structured output, successful analyses can be persisted to SQLite, and failures are handled per review rather than crashing the entire batch.
+| Snapshot | Current project |
+| --- | --- |
+| [`ai_shopping_agent/`](ai_shopping_agent/) | [ai-shopping-agent](https://github.com/kcrokkam/ai-shopping-agent) |
+| [`blood_work_analyzer/`](blood_work_analyzer/) | [blood-work-analyzer](https://github.com/kcrokkam/blood-work-analyzer) |
+| [`telecom_rag_chatbot/`](telecom_rag_chatbot/) | [telecom-rag-chatbot](https://github.com/kcrokkam/telecom-rag-chatbot) |
+| [`call_llm.ipynb`](call_llm.ipynb) | Introductory model-call experiments |
 
-**Technical signals:** FastAPI · Pydantic · structured LLM output · API contracts · SQLite · pytest
-
-[Live demo](https://customer-feedback-analyzer-748gprrueqgffnaygsoevu.streamlit.app/) · [Repository](https://github.com/chaitanya4595-afk/customer-feedback-analyzer)
-
-### 3. Look at the Blood Work Analyzer for pipeline decomposition
-
-The main design decision is to split one broad LLM task into two stages:
-
-```text
-raw report
-   ↓
-extract + classify
-   ↓
-intermediate representation
-   ↓
-interpret
-   ↓
-summary + diet guidance
-```
-
-The service accepts an injected model dependency, allowing the orchestration contract to be tested without making external model calls.
-
-**Technical signals:** staged LLM workflow · prompt contracts · dependency injection · failure handling · CI
-
-[Live demo](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) · [README](https://github.com/chaitanya4595-afk/blood-work-analyzer#readme) · [Architecture](https://github.com/chaitanya4595-afk/blood-work-analyzer/blob/main/ARCHITECTURE.md)
-
-## Portfolio map
-
-```mermaid
-flowchart TB
-    P[AI Systems Portfolio]
-
-    P --> SHOP[AI Shopping Agent]
-    P --> FEEDBACK[Customer Feedback Analyzer]
-    P --> BLOOD[Blood Work Analyzer]
-    P --> RAG[Telecom RAG Chatbot]
-
-    SHOP --> AGENT[Agent + Tools]
-    SHOP --> VISION[Multimodal Search]
-    SHOP --> DB1[(SQLite)]
-
-    FEEDBACK --> API[FastAPI + Pydantic]
-    FEEDBACK --> GEMINI1[Gemini Structured Output]
-    FEEDBACK --> DB2[(SQLite)]
-
-    BLOOD --> STAGE1[Stage 1: Extract]
-    STAGE1 --> STAGE2[Stage 2: Interpret]
-    STAGE2 --> GEMINI2[Gemma via Gemini API]
-
-    RAG --> RET[Multi-source Retriever]
-    RET --> FAQ[(FAQs)]
-    RET --> TIX[(Tickets)]
-    RET --> PDF[(PDF Guide)]
-```
-
-## Engineering themes across the portfolio
-
-Rather than treating the model as the entire application, these projects repeatedly separate responsibilities:
-
-```text
-user input
-   ↓
-application / orchestration layer
-   ↓
-deterministic tools, retrieval, or structured intermediate state
-   ↓
-model reasoning or generation
-   ↓
-validation / guarded action
-   ↓
-user-facing output
-```
-
-That separation creates concrete places to test, validate, observe, and harden the system.
-
-## What I would harden next
-
-The projects are portfolio-scale systems, not claims of production completeness. The next layer across the portfolio would be:
-
-- structured-output schemas wherever free-form model text is still used
-- end-to-end evaluation datasets and regression tests
-- tracing, latency, token, and failure telemetry
-- application-level authorization for write-capable agent tools
-- hosted production data stores where SQLite is currently used
-- stronger document parsing and deterministic validation before LLM interpretation
-
-The Telecom RAG project remains in this repository as a working build and has not yet been promoted to a standalone deployed application.
+The root dependency files belong to these historical examples. Each standalone repository documents its own environment and commands. Earlier commits and the original telecom package release remain available here.

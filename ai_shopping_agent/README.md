@@ -1,5 +1,9 @@
 # AI Shopping Agent
 
+> **Historical tutorial snapshot.** The current project is [kcrokkam/ai-shopping-agent](https://github.com/kcrokkam/ai-shopping-agent). Use that repository for setup, documentation, and future changes.
+
+[Portfolio guide](../README.md)
+
 A conversational shopping assistant. Tell it what you want in plain English, or upload a photo of a product. It searches the store, checks customer ratings, shows the matches, and places the order once you confirm.
 
 ## How it works
