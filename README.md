@@ -42,7 +42,7 @@ I built this as an experiment in separating extraction from interpretation. One 
 
 **Built with:** Python, LangChain, Gemini API, Streamlit.
 
-[Repository](https://github.com/kcrokkam/blood-work-analyzer) · [Demo](https://blood-work-analyzer-ajxxhudcgayqhcsinv7g9u.streamlit.app/) · [Pipeline design](https://github.com/kcrokkam/blood-work-analyzer/blob/main/ARCHITECTURE.md)
+[Repository](https://github.com/kcrokkam/blood-work-analyzer) · [Demo](https://blood-work-analyzer-hcsq3acoxxkg3oedr5sxke.streamlit.app/) · [Pipeline design](https://github.com/kcrokkam/blood-work-analyzer/blob/main/ARCHITECTURE.md)
 
 ## Earlier versions
 
