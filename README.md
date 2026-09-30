@@ -18,7 +18,7 @@ I built a support assistant that retrieves information from FAQs, resolved ticke
 
 **Built with:** Python, LangChain, Chroma, Hugging Face embeddings, Groq, Streamlit.
 
-[Repository](https://github.com/kcrokkam/telecom-rag-chatbot) · [Architecture](https://github.com/kcrokkam/telecom-rag-chatbot/blob/main/ARCHITECTURE.md) · [Downloads](https://github.com/kcrokkam/telecom-rag-chatbot/releases)
+[Repository](https://github.com/kcrokkam/telecom-rag-chatbot) · [Demo](https://telecom-rag-chatbot-zr7jytflnhserbkps7uhaq.streamlit.app/) · [Architecture](https://github.com/kcrokkam/telecom-rag-chatbot/blob/main/ARCHITECTURE.md) · [Downloads](https://github.com/kcrokkam/telecom-rag-chatbot/releases)
 
 ## Customer Feedback Analyzer
 
