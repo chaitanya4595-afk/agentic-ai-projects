@@ -10,7 +10,7 @@ I built a conversational shopping assistant that searches a catalog, looks up ra
 
 **Built with:** Python, LangChain, Groq, SQLite, Streamlit.
 
-[Repository](https://github.com/kcrokkam/ai-shopping-agent) · [Demo](https://ai-shopping-agent-fvz8dpwpsfrihivomnkcz2.streamlit.app/) · [Architecture](https://github.com/kcrokkam/ai-shopping-agent/blob/main/ARCHITECTURE.md)
+[Repository](https://github.com/kcrokkam/ai-shopping-agent) · [Demo](https://ai-shopping-agent-nbnus6ixgzzhpu9hkatg5z.streamlit.app/) · [Architecture](https://github.com/kcrokkam/ai-shopping-agent/blob/main/ARCHITECTURE.md)
 
 ## Telecom RAG Assistant
 
